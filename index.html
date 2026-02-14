@@ -509,6 +509,8 @@
                     enable: false,
                 },
                 allowLocalhostAsSecureOrigin: true,
+                serviceWorkerPath: '/anime-expo/OneSignalSDKWorker.js',  // 新增這行！
+                serviceWorkerParam: { scope: '/anime-expo/' }  // 新增這行！
             });
 
             // 檢查訂閱狀態
