@@ -494,14 +494,14 @@
         // ========================================
         // 重要：請填入你的 OneSignal 資訊
         // ========================================
-        const ONESIGNAL_APP_ID = 'YOUR_APP_ID_HERE';
-        const ONESIGNAL_REST_API_KEY = 'YOUR_REST_API_KEY_HERE';
+        const ONESIGNAL_APP_ID = '5cf08f55-1c78-478a-b580-97a50ec10820';
+        const ONESIGNAL_REST_API_KEY = 'os_v2_app_ltyi6vi4pbdyvnmas6sq5qiieazdv4eqh7oeiwe73znrbnopykcdmcfe4iwmmim7qr63vhe4mc32qudevsibv5fo7drfxtg5qwnevlq';
 
         let isSubscribed = false;
 
         // OneSignal 初始化
         window.OneSignalDeferred = window.OneSignalDeferred || [];
-        
+
         OneSignalDeferred.push(async function(OneSignal) {
             await OneSignal.init({
                 appId: ONESIGNAL_APP_ID,
@@ -525,13 +525,13 @@
         async function checkSubscriptionStatus() {
             try {
                 const isPushSupported = OneSignal.Notifications.isPushSupported();
-                
+
                 if (!isPushSupported) {
                     return;
                 }
 
                 const permission = await OneSignal.Notifications.permission;
-                
+
                 if (permission) {
                     isSubscribed = true;
                     updateLoginButton(true);
@@ -552,13 +552,13 @@
                 try {
                     btn.textContent = '請求權限中...';
                     btn.disabled = true;
-                    
+
                     await OneSignal.Notifications.requestPermission();
-                    
+
                     isSubscribed = true;
                     updateLoginButton(true);
                     showToast('✅ 登入成功！現在可以發送通知了');
-                    
+
                 } catch (error) {
                     showToast('❌ 登入失敗，請允許通知權限');
                     btn.disabled = false;
@@ -582,11 +582,11 @@
                     body: JSON.stringify({
                         app_id: ONESIGNAL_APP_ID,
                         included_segments: ['Subscribed Users'],
-                        contents: { 
+                        contents: {
                             'en': '🎌 有新的漫展消息！',
                             'zh-Hant': '🎌 有新的漫展消息！'
                         },
-                        headings: { 
+                        headings: {
                             'en': 'ANIME EXPO 2026',
                             'zh-Hant': '台北國際動漫展'
                         }
@@ -624,7 +624,7 @@
             const toast = document.getElementById('notificationToast');
             toast.textContent = message;
             toast.classList.add('show');
-            
+
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 3000);
